@@ -201,7 +201,3 @@ NIM: **231011402668**
 Teknik Informatika — Universitas Pamulang
 
 ---
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
