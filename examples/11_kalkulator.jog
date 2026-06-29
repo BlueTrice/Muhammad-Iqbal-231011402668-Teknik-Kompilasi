@@ -1,0 +1,46 @@
+// Contoh 11: Kalkulator Empat Operasi
+// Demonstrasi penggunaan fungsi dan kondisional
+
+wiwiti
+    gawe tambah(angka a, angka b) {
+        balekna a + b
+    }
+
+    gawe kurang(angka a, angka b) {
+        balekna a - b
+    }
+
+    gawe kali(angka a, angka b) {
+        balekna a * b
+    }
+
+    gawe bagi(pecahan a, pecahan b) {
+        yen b == 0 {
+            tampilna("Kesalahan: pembagi tidak boleh nol!")
+            balekna 0
+        }
+        balekna a / b
+    }
+
+    gawe pangkat(angka basis, angka exp) {
+        angka hasil = 1
+        baleni angka i = 0 ; i < exp ; i += 1 {
+            hasil = hasil * basis
+        }
+        balekna hasil
+    }
+
+    // Demo kalkulator
+    angka x = 12
+    angka y = 4
+
+    tampilna("=== Kalkulator JogLang ===")
+    tampilna(tambah(x, y))
+    tampilna(kurang(x, y))
+    tampilna(kali(x, y))
+    tampilna(bagi(x, y))
+    tampilna(pangkat(x, 2))
+
+    // Tes pembagi nol
+    bagi(10, 0)
+rampung

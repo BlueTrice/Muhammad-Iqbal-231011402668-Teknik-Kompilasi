@@ -1,0 +1,21 @@
+// Contoh 4: Percabangan (if / else-if / else)
+// Penentuan nilai huruf berdasarkan nilai angka
+
+wiwiti
+    angka nilai = 85
+    teks huruf  = "F"
+
+    yen nilai >= 90 {
+        huruf = "A"
+    } liyane_yen nilai >= 80 {
+        huruf = "B"
+    } liyane_yen nilai >= 70 {
+        huruf = "C"
+    } liyane_yen nilai >= 60 {
+        huruf = "D"
+    } liyane {
+        huruf = "F"
+    }
+
+    tampilna(huruf)
+rampung

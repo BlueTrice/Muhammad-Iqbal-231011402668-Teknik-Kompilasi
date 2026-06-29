@@ -1,0 +1,39 @@
+// Contoh 12: Bilangan Prima
+// Mencari semua bilangan prima antara 2 sampai N
+// menggunakan algoritma trial division
+
+wiwiti
+    gawe adalah_prima(angka n) {
+        yen n < 2 {
+            balekna salah
+        }
+        yen n == 2 {
+            balekna bener
+        }
+        angka i = 2
+        nalika i * i <= n {
+            yen n % i == 0 {
+                balekna salah
+            }
+            i = i + 1
+        }
+        balekna bener
+    }
+
+    gawe hitung_prima(angka batas) {
+        angka jumlah = 0
+        baleni angka n = 2 ; n <= batas ; n += 1 {
+            yen adalah_prima(n) {
+                tampilna(n)
+                jumlah = jumlah + 1
+            }
+        }
+        balekna jumlah
+    }
+
+    tampilna("=== Bilangan Prima 2 - 50 ===")
+    angka total = hitung_prima(50)
+
+    tampilna("=== Total Prima ===")
+    tampilna(total)
+rampung

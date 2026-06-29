@@ -1,0 +1,25 @@
+// Contoh 2: Variabel dan Tipe Data
+// Mendemonstrasikan semua tipe data JogLang
+
+wiwiti
+    // Tipe angka (integer)
+    angka umur = 20
+    angka tahun = 2025
+
+    // Tipe pecahan (float)
+    pecahan tinggi = 170.5
+    pecahan berat  = 65.3
+
+    // Tipe teks (string)
+    teks nama  = "Budi Santoso"
+    teks kota  = "Yogyakarta"
+
+    // Tipe bener_salah (boolean)
+    bener_salah aktif  = bener
+    bener_salah selesai = salah
+
+    tampilna(nama)
+    tampilna(umur)
+    tampilna(tinggi)
+    tampilna(aktif)
+rampung

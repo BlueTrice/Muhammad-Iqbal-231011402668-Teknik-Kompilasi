@@ -1,0 +1,523 @@
+Metadata-Version: 2.4
+Name: joglang
+Version: 1.0.0
+Summary: Mini Compiler untuk bahasa JogLang (Bahasa Jawa Dialek Yogyakarta)
+Author: JogLang Team
+License: MIT License
+        
+        Copyright (c) 2025 JogLang Team
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Compilers
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# JogLang Compiler 🌟
+
+**Mini Compiler untuk Bahasa Pemrograman JogLang**  
+Bahasa Jawa Dialek Yogyakarta · Python 3 · Proyek UAS Compiler Construction
+
+---
+
+## Apa itu JogLang?
+
+JogLang adalah bahasa pemrograman buatan sendiri yang menggunakan **Bahasa Jawa dialek Yogyakarta** sebagai keyword-nya. Compiler JogLang adalah proyek akademis yang mengimplementasikan **seluruh tahapan compiler sungguhan** dari awal hingga menghasilkan kode Python yang dapat dieksekusi.
+
+```
+wiwiti
+    tampilna("Sugeng rawuh ing JogLang!")
+    angka x = 5 + 3          // constant folding: -> 8
+    tampilna(x)
+rampung
+```
+
+---
+
+## Arsitektur Compiler
+
+```
+Source Code (.jog)
+       │
+       ▼
+ ┌──────────┐
+ │  LEXER   │  → List[Token]          token.py, lexer.py
+ └──────────┘
+       │
+       ▼
+ ┌──────────┐
+ │  PARSER  │  → AST (ProgramNode)    parser.py, ast_nodes.py
+ └──────────┘
+       │
+       ▼
+ ┌────────────────────┐
+ │ SEMANTIC ANALYZER  │  → Validated AST    semantic.py
+ └────────────────────┘
+       │
+       ▼
+ ┌───────────┐
+ │ OPTIMIZER │  → Optimized AST       optimizer.py
+ └───────────┘
+       │
+       ▼
+ ┌────────────────┐
+ │ CODE GENERATOR │  → Python Code    codegen.py
+ └────────────────┘
+       │
+       ▼
+ Output Python (.py)
+```
+
+---
+
+## Keyword JogLang
+
+| JogLang       | Arti              | Padanan Python  |
+|---------------|-------------------|-----------------|
+| `wiwiti`      | awal program      | —               |
+| `rampung`     | akhir program     | —               |
+| `gawe`        | buat fungsi       | `def`           |
+| `balekna`     | kembalikan nilai  | `return`        |
+| `yen`         | jika              | `if`            |
+| `liyane_yen`  | selain jika       | `elif`          |
+| `liyane`      | selain itu        | `else`          |
+| `nalika`      | selama            | `while`         |
+| `baleni`      | ulangi            | `for`           |
+| `mandheg`     | berhenti          | `break`         |
+| `terusna`     | lanjutkan         | `continue`      |
+| `tampilna`    | tampilkan         | `print()`       |
+| `takon`       | tanya / input     | `input()`       |
+| `angka`       | bilangan bulat    | `int`           |
+| `pecahan`     | bilangan desimal  | `float`         |
+| `teks`        | teks / string     | `str`           |
+| `bener_salah` | boolean           | `bool`          |
+| `bener`       | benar             | `True`          |
+| `salah`       | salah             | `False`         |
+| `kosong`      | kosong / null     | `None`          |
+| `lan`         | dan               | `and`           |
+| `utawa`       | atau              | `or`            |
+| `ora`         | tidak / bukan     | `not`           |
+
+---
+
+## Instalasi
+
+### Windows
+
+```bat
+install_windows.bat
+```
+
+### Linux / macOS
+
+```bash
+chmod +x install_unix.sh
+./install_unix.sh
+```
+
+### Manual (semua platform)
+
+```bash
+pip install .
+```
+
+### Uninstall
+
+```bash
+# Linux/macOS
+./uninstall_unix.sh
+
+# Windows
+uninstall_windows.bat
+
+# Manual
+pip uninstall joglang
+```
+
+---
+
+## Penggunaan CLI
+
+```bash
+# Kompilasi file .jog → menghasilkan .py di folder output/
+joglang examples/01_halo_dunia.jog
+
+# Kompilasi lalu langsung jalankan hasilnya
+joglang examples/08_faktorial.jog --run
+
+# Tentukan direktori output
+joglang examples/01_halo_dunia.jog -o hasil/
+
+# Tampilkan progress tiap tahap
+joglang examples/08_faktorial.jog --verbose
+
+# Nonaktifkan optimizer
+joglang examples/03_aritmatika.jog --no-optimize
+
+# Debug: tampilkan daftar token
+joglang examples/01_halo_dunia.jog --tokens
+
+# Debug: tampilkan AST
+joglang examples/01_halo_dunia.jog --ast
+
+# Tampilkan versi
+joglang --version
+
+# Bantuan
+joglang --help
+```
+
+Atau tanpa instalasi:
+
+```bash
+python main.py examples/01_halo_dunia.jog --run
+```
+
+---
+
+## Contoh Program
+
+### 01 — Halo Dunia
+
+```joglang
+wiwiti
+    tampilna("Sugeng rawuh ing JogLang!")
+    tampilna("Halo, Dunia!")
+rampung
+```
+
+### 02 — Variabel & Tipe Data
+
+```joglang
+wiwiti
+    angka umur        = 20
+    pecahan tinggi    = 170.5
+    teks nama         = "Budi Santoso"
+    bener_salah aktif = bener
+
+    tampilna(nama)
+    tampilna(umur)
+    tampilna(tinggi)
+    tampilna(aktif)
+rampung
+```
+
+### 03 — Aritmatika & Operator
+
+```joglang
+wiwiti
+    angka a = 10
+    angka b = 3
+
+    tampilna(a + b)    // 13
+    tampilna(a - b)    // 7
+    tampilna(a * b)    // 30
+    tampilna(a / b)    // 3.333...
+    tampilna(a % b)    // 1
+    tampilna(a ** b)   // 1000
+rampung
+```
+
+### 04 — Kondisional
+
+```joglang
+wiwiti
+    angka nilai = 85
+
+    yen nilai >= 90 {
+        tampilna("A")
+    } liyane_yen nilai >= 80 {
+        tampilna("B")
+    } liyane_yen nilai >= 70 {
+        tampilna("C")
+    } liyane {
+        tampilna("D atau E")
+    }
+rampung
+```
+
+### 05 — While Loop
+
+```joglang
+wiwiti
+    angka i = 1
+    angka jumlah = 0
+    nalika i <= 100 {
+        jumlah = jumlah + i
+        i = i + 1
+    }
+    tampilna(jumlah)    // 5050
+rampung
+```
+
+### 06 — For Loop
+
+```joglang
+wiwiti
+    baleni angka i = 1 ; i <= 10 ; i += 1 {
+        tampilna(i)
+    }
+rampung
+```
+
+### 07 — Fungsi
+
+```joglang
+wiwiti
+    gawe sapa(teks nama) {
+        tampilna("Halo, " + nama + "!")
+    }
+
+    gawe tambah(angka a, angka b) {
+        balekna a + b
+    }
+
+    sapa("Budi")
+    tampilna(tambah(3, 4))    // 7
+rampung
+```
+
+### 08 — Faktorial Rekursif
+
+```joglang
+wiwiti
+    gawe faktorial(angka n) {
+        yen n <= 1 {
+            balekna 1
+        }
+        balekna n * faktorial(n - 1)
+    }
+
+    tampilna(faktorial(5))    // 120
+    tampilna(faktorial(10))   // 3628800
+rampung
+```
+
+### 09 — Deret Fibonacci
+
+```joglang
+wiwiti
+    gawe fib(angka n) {
+        yen n <= 0 { balekna 0 }
+        yen n == 1 { balekna 1 }
+        balekna fib(n - 1) + fib(n - 2)
+    }
+
+    baleni angka i = 0 ; i < 8 ; i += 1 {
+        tampilna(fib(i))
+    }
+rampung
+```
+
+### 10 — Break & Continue
+
+```joglang
+wiwiti
+    // Hanya cetak bilangan ganjil
+    baleni angka i = 1 ; i <= 10 ; i += 1 {
+        yen i % 2 == 0 { terusna }
+        tampilna(i)
+    }
+
+    // Berhenti saat menemukan angka 5
+    angka j = 0
+    nalika bener {
+        j = j + 1
+        tampilna(j)
+        yen j >= 5 { mandheg }
+    }
+rampung
+```
+
+### 11 — Kalkulator
+
+```joglang
+wiwiti
+    gawe bagi(pecahan a, pecahan b) {
+        yen b == 0 {
+            tampilna("Kesalahan: pembagi tidak boleh nol!")
+            balekna 0
+        }
+        balekna a / b
+    }
+    tampilna(bagi(12, 4))    // 3.0
+    bagi(10, 0)               // pesan kesalahan
+rampung
+```
+
+### 12 — Bilangan Prima
+
+```joglang
+wiwiti
+    gawe adalah_prima(angka n) {
+        yen n < 2 { balekna salah }
+        angka i = 2
+        nalika i * i <= n {
+            yen n % i == 0 { balekna salah }
+            i = i + 1
+        }
+        balekna bener
+    }
+
+    baleni angka n = 2 ; n <= 50 ; n += 1 {
+        yen adalah_prima(n) { tampilna(n) }
+    }
+rampung
+```
+
+---
+
+## Fitur Optimizer
+
+| Optimasi               | Sebelum               | Sesudah          |
+|------------------------|-----------------------|------------------|
+| Constant Folding       | `5 + 3`               | `8`              |
+| Constant Folding       | `10 * 2`              | `20`             |
+| Constant Folding       | `"a" + "b"`           | `"ab"`           |
+| Identity Optimization  | `x + 0`               | `x`              |
+| Identity Optimization  | `x * 1`               | `x`              |
+| Identity Optimization  | `x * 0`               | `0`              |
+| Identity Optimization  | `x ** 0`              | `1`              |
+| Strength Reduction     | `x ** 2`              | `x * x`          |
+| Dead Code Elimination  | `yen salah { ... }`   | *(dihapus)*      |
+| Dead Code Elimination  | `nalika salah { }`    | *(dihapus)*      |
+| Boolean Short-Circuit  | `bener lan x`         | `x`              |
+| Boolean Short-Circuit  | `salah utawa x`       | `x`              |
+
+---
+
+## Error yang Dideteksi
+
+### Lexical Error
+```
+wiwiti angka x = @  // karakter ilegal '@'
+wiwiti print(5)     // keyword terlarang 'print'
+wiwiti if bener { } // keyword terlarang 'if'
+```
+
+### Syntax Error
+```
+angka x = 5 rampung         // tanpa 'wiwiti'
+wiwiti angka x = 5          // tanpa 'rampung'
+wiwiti angka = 5 rampung    // tanpa nama variabel
+```
+
+### Semantic Error
+```
+wiwiti tampilna(x) rampung          // x belum dideklarasikan
+wiwiti angka x = 1 angka x = 2 rampung  // redeklarasi x
+wiwiti balekna 5 rampung            // balekna di luar fungsi
+wiwiti mandheg rampung              // mandheg di luar loop
+wiwiti teks nama = 42 rampung       // type mismatch
+```
+
+---
+
+## Testing
+
+```bash
+# Semua test (250+ test cases)
+python -m pytest tests/ -v
+
+# Per modul
+python -m pytest tests/test_lexer.py
+python -m pytest tests/test_parser.py
+python -m pytest tests/test_semantic.py
+python -m pytest tests/test_optimizer.py
+python -m pytest tests/test_compiler.py
+
+# Dengan coverage
+python -m pytest tests/ --tb=short -q
+```
+
+---
+
+## Struktur Proyek
+
+```
+joglang_project/
+│
+├── joglang_compiler/          # Package compiler utama
+│   ├── __init__.py            # Versi & metadata
+│   ├── token.py               # TokenType, Token, TOKEN_SPEC, FORBIDDEN_KEYWORDS
+│   ├── lexer.py               # Lexer berbasis regex
+│   ├── ast_nodes.py           # Semua node AST + ASTVisitor (base class)
+│   ├── parser.py              # Recursive Descent Parser
+│   ├── semantic.py            # Semantic Analyzer (Visitor Pattern)
+│   ├── optimizer.py           # Code Optimizer: folding, identity, dead code
+│   ├── codegen.py             # Code Generator → Python
+│   ├── compiler.py            # Pipeline lengkap: Lexer→Parser→Semantic→Opt→Gen
+│   ├── errors.py              # Hierarki exception JogLang
+│   └── utils.py               # Fungsi baca/tulis file, banner
+│
+├── examples/                  # 12 contoh program .jog
+│   ├── 01_halo_dunia.jog
+│   ├── 02_variabel.jog
+│   ├── 03_aritmatika.jog
+│   ├── 04_kondisional.jog
+│   ├── 05_while_loop.jog
+│   ├── 06_for_loop.jog
+│   ├── 07_fungsi.jog
+│   ├── 08_faktorial.jog
+│   ├── 09_fibonacci.jog
+│   ├── 10_break_continue.jog
+│   ├── 11_kalkulator.jog
+│   └── 12_bilangan_prima.jog
+│
+├── output/                    # File .py hasil kompilasi
+│
+├── tests/                     # Unit test (250+ test cases)
+│   ├── test_lexer.py          # Test tokenisasi
+│   ├── test_parser.py         # Test parsing & AST
+│   ├── test_semantic.py       # Test analisis semantik
+│   ├── test_optimizer.py      # Test optimasi
+│   └── test_compiler.py       # Test pipeline end-to-end
+│
+├── docs/                      # Dokumentasi teknis
+│   ├── Grammar.md             # EBNF grammar JogLang
+│   ├── Lexer.md               # Desain & cara kerja Lexer
+│   ├── Parser.md              # Desain Recursive Descent Parser
+│   ├── AST.md                 # Hierarki node AST
+│   ├── Semantic.md            # Aturan analisis semantik
+│   ├── Optimization.md        # Teknik optimasi yang digunakan
+│   └── UserGuide.md           # Panduan pengguna
+│
+├── installer/                 # (placeholder)
+├── main.py                    # CLI entry point
+├── setup.py                   # Konfigurasi pip install
+├── pyproject.toml             # Build system config
+├── README.md                  # Dokumentasi utama (file ini)
+├── LICENSE                    # MIT License
+├── install_windows.bat        # Installer Windows
+├── install_unix.sh            # Installer Linux/macOS
+├── uninstall_windows.bat      # Uninstaller Windows
+└── uninstall_unix.sh          # Uninstaller Linux/macOS
+```
+
+---
+
+## Lisensi
+
+MIT License © 2025 JogLang Team  
+Dibuat sebagai Proyek UAS Mata Kuliah Compiler Construction.

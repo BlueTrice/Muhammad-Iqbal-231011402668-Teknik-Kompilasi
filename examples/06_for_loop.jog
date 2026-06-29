@@ -1,0 +1,10 @@
+// Contoh 6: Loop For (baleni)
+// Mencetak tabel perkalian 5
+
+wiwiti
+    tampilna("Tabel Perkalian 5:")
+    baleni angka i = 1 ; i <= 10 ; i += 1 {
+        angka hasil = 5 * i
+        tampilna(hasil)
+    }
+rampung

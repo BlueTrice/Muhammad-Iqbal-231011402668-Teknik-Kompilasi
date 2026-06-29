@@ -1,0 +1,21 @@
+// Contoh 3: Operasi Aritmatika
+// Mendemonstrasikan semua operator aritmatika
+
+wiwiti
+    angka a = 10
+    angka b = 3
+
+    angka jumlah    = a + b
+    angka kurang    = a - b
+    angka kali      = a * b
+    pecahan bagi    = a / b
+    angka sisa      = a % b
+    angka pangkat   = a ** 2
+
+    tampilna(jumlah)
+    tampilna(kurang)
+    tampilna(kali)
+    tampilna(bagi)
+    tampilna(sisa)
+    tampilna(pangkat)
+rampung

@@ -1,0 +1,2 @@
+[console_scripts]
+joglang = joglang_compiler.cli:main

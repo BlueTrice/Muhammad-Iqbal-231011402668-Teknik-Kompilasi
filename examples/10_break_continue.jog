@@ -1,0 +1,24 @@
+// Contoh 10: Break dan Continue
+// Demonstrasi mandheg (break) dan terusna (continue)
+
+wiwiti
+    // Hanya cetak bilangan ganjil 1-9 (skip genap)
+    tampilna("Bilangan ganjil:")
+    baleni angka i = 1 ; i <= 10 ; i += 1 {
+        yen i % 2 == 0 {
+            terusna
+        }
+        tampilna(i)
+    }
+
+    // Berhenti saat menemukan angka 5
+    tampilna("Hitung sampai 5:")
+    angka j = 0
+    nalika bener {
+        j = j + 1
+        tampilna(j)
+        yen j >= 5 {
+            mandheg
+        }
+    }
+rampung

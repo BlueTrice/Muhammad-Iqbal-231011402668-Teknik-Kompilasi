@@ -1,0 +1,24 @@
+// Contoh 7: Fungsi (gawe)
+// Fungsi penambahan dan perkalian
+
+wiwiti
+    gawe tambah(angka a, angka b) {
+        balekna a + b
+    }
+
+    gawe kali(angka a, angka b) {
+        balekna a * b
+    }
+
+    gawe kuadrat(angka n) {
+        balekna n * n
+    }
+
+    angka x = tambah(3, 4)
+    angka y = kali(3, 4)
+    angka z = kuadrat(5)
+
+    tampilna(x)
+    tampilna(y)
+    tampilna(z)
+rampung

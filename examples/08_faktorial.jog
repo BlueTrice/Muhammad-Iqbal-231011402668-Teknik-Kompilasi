@@ -1,0 +1,17 @@
+// Contoh 8: Faktorial Rekursif
+// Menghitung n! menggunakan rekursi
+
+wiwiti
+    gawe faktorial(angka n) {
+        yen n <= 1 {
+            balekna 1
+        }
+        balekna n * faktorial(n - 1)
+    }
+
+    angka hasil = faktorial(5)
+    tampilna(hasil)
+
+    angka hasil2 = faktorial(10)
+    tampilna(hasil2)
+rampung

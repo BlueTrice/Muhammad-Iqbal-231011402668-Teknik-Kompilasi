@@ -1,0 +1,20 @@
+// Contoh 9: Deret Fibonacci
+// Mencetak deret Fibonacci sampai N suku
+
+wiwiti
+    gawe fib(angka n) {
+        yen n <= 0 {
+            balekna 0
+        }
+        yen n == 1 {
+            balekna 1
+        }
+        balekna fib(n - 1) + fib(n - 2)
+    }
+
+    // Cetak 8 suku pertama Fibonacci
+    baleni angka i = 0 ; i < 8 ; i += 1 {
+        angka f = fib(i)
+        tampilna(f)
+    }
+rampung

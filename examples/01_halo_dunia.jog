@@ -1,0 +1,7 @@
+// Contoh 1: Halo Dunia
+// Program JogLang paling sederhana
+
+wiwiti
+    tampilna("Sugeng rawuh ing JogLang!")
+    tampilna("Halo, Dunia!")
+rampung

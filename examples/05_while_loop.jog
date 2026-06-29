@@ -1,0 +1,14 @@
+// Contoh 5: Loop While (nalika)
+// Menghitung jumlah 1 sampai 10
+
+wiwiti
+    angka i      = 1
+    angka jumlah = 0
+
+    nalika i <= 10 {
+        jumlah = jumlah + i
+        i = i + 1
+    }
+
+    tampilna(jumlah)
+rampung
